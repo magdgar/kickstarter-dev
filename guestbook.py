@@ -7,6 +7,8 @@ from google.appengine.ext import ndb
 import jinja2
 import webapp2
 
+from controllers.projects import Projects
+from service import HelloWorld
 
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -110,4 +112,6 @@ class Guestbook(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([
     ('/', MainPage),
     ('/sign', Guestbook),
+    ('/helloworld', HelloWorld),
+    ('/projects', Projects)
 ], debug=True)
