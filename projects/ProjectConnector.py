@@ -1,6 +1,7 @@
 import datetime
 import SQLConnector
 
+
 class Project():
     def __init__(self, id, name, description, creator):
         self.id = id
@@ -13,7 +14,8 @@ class Project():
 
 class ProjectConnector(SQLConnector):
     def __init__(self):
-        super()
-        
+        SQLConnector.__init__(self)
+
+
 
 
