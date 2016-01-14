@@ -7,7 +7,7 @@ from google.appengine.ext import ndb
 import jinja2
 import webapp2
 
-from controllers.projects import Projects
+from projects.projects import Projects
 from service import HelloWorld
 
 JINJA_ENVIRONMENT = jinja2.Environment(
