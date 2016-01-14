@@ -1,9 +1,9 @@
 import webapp2
 import json
 from ProjectConnector import ProjectConnector, Project
+from webob import Request
 
-
-class Projects(webapp2.RequestHandler):
+class ProjectsHandler(webapp2.RequestHandler):
 
     def get(self):
         sqlConn = ProjectConnector()
@@ -24,13 +24,16 @@ class Projects(webapp2.RequestHandler):
             'date': str(row[5])
             }
             response.append(obj)
+        print(response)
         self.response.out.write(json.dumps(response))
 
     def post(self):
         sqlConn = ProjectConnector()
-        p = Project(str(self.request.get("name")), str(self.request.get("desc")) + "'", str(self.request.get(
+        p = Project(str(self.request.get("name")), str(self.request.get("desc")), str(self.request.get(
             "creatorId")))
         sqlConn.insert_into(p)
 
 
-app = webapp2.WSGIApplication([('/', Projects)])
+app = webapp2.WSGIApplication([
+    ('/projects', ProjectsHandler),
+])

@@ -6,13 +6,12 @@ threadsafe: true
 
 # Handlers match in order, put above the default handler.
 handlers:
-- url: /stylesheets
-  static_dir: stylesheets
-
-- url: /.*
-  script: guestbook.app
+- url: /projects
+  script: projects.ProjectsHandler.app
 
 libraries:
+- name: MySQLdb
+  version: "latest"
 - name: webapp2
   version: latest
 - name: jinja2
