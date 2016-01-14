@@ -1,18 +1,17 @@
-import datetime
 import webapp2
 import json
-import SQLConnector
+from ProjectConnector import ProjectConnector, Project
 
 
 class Projects(webapp2.RequestHandler):
 
     def get(self):
-        sqlConn = SQLConnector()
+        sqlConn = ProjectConnector()
         name = str(self.request.get("name"))
         if name != "":
-            rows = sqlConn.select_all_where("projects", "name = '%s'" % name)
+            rows = sqlConn.select_all_where("name = '%s'" % name)
         else:
-            rows = sqlConn.select_all_from("projects")
+            rows = sqlConn.select_all_from()
         response = []
         obj = ""
         for row in rows:
@@ -28,10 +27,10 @@ class Projects(webapp2.RequestHandler):
         self.response.out.write(json.dumps(response))
 
     def post(self):
-        sqlConn = SQLConnector()
-        name = "'" + str(self.request.get("name")) + "'"
-        desc = "'" + str(self.request.get("desc")) + "'"
-        creator = str(self.request.get("creatorId"))
-        today = "'" + datetime.datetime.now().strftime('%Y-%m-%d') + "'"
-        sqlConn.insert_into("projects", {"name": name, "description": desc, "creator": creator, "createdOn": today})
+        sqlConn = ProjectConnector()
+        p = Project(str(self.request.get("name")), str(self.request.get("desc")) + "'", str(self.request.get(
+            "creatorId")))
+        sqlConn.insert_into(p)
 
+
+app = webapp2.WSGIApplication([('/', Projects)])
