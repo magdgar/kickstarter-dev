@@ -6,6 +6,9 @@ threadsafe: true
 
 # Handlers match in order, put above the default handler.
 handlers:
+- url: /
+  script: projects.ProjectsHandler.app
+
 - url: /projects
   script: projects.ProjectsHandler.app
 
@@ -13,6 +16,4 @@ libraries:
 - name: MySQLdb
   version: "latest"
 - name: webapp2
-  version: latest
-- name: jinja2
   version: latest
