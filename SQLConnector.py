@@ -7,7 +7,7 @@ _INSTANCE_NAME = 'kickstarter-dev:kickstarter-sql'
 class SQLConnector:
     def __init__(self):
         if os.getenv('SERVER_SOFTWARE') and os.getenv('SERVER_SOFTWARE').startswith('Google App Engine/'):
-            self.db = MySQLdb.connect(unix_socket='/cloudsql/' + _INSTANCE_NAME, db='kickstarter', user="magdalena", passwd="root")
+            self.db = MySQLdb.connect(unix_socket='/cloudsql/' + _INSTANCE_NAME, db='kickstarter', user="root")
         else:
             self.db = MySQLdb.connect(host="173.194.246.10", user="magdalena", passwd="root", db="kickstarter")
         self.cursor = self.db.cursor()
