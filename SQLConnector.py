@@ -22,7 +22,7 @@ class SQLConnector:
         return self.cursor.fetchall()
 
     def select_all_where(self, condition):
-        self.cursor.execute("SELECT * FROM %s WHERE %s" % (self.table_name , condition))
+        self.cursor.execute("SELECT * FROM %s WHERE %s" % (self.table_name, condition))
         return self.cursor.fetchall()
 
     def select_where(self, columns, condition):
