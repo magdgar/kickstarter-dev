@@ -7,7 +7,7 @@ threadsafe: true
 # Handlers match in order, put above the default handler.
 handlers:
 - url: /
-  script: projects.ProjectsHandler.app
+  script: hello.app
 
 - url: /projects
   script: projects.ProjectsHandler.app
