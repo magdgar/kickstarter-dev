@@ -1,8 +1,10 @@
 import datetime
 from SQLConnector import SQLConnector
 
+TABLE_NAME = "projects"
 
-class Project():
+
+class Project:
     def __init__(self, name, description, creator):
         self.name = name
         self.description = description
@@ -29,22 +31,7 @@ class Project():
         return query
 
 
-
 class ProjectConnector(SQLConnector):
     def __init__(self):
-        SQLConnector().__init__()
-
-    def select_all_from(self):
-        return SQLConnector().select_all_from("projects")
-
-    def select_from(self, columns):
-        return SQLConnector().select_from("projects", columns)
-
-    def select_all_where(self, condition):
-        return SQLConnector().select_all_where("projects", condition)
-
-    def select_where(self, columns, condition):
-        return SQLConnector().select_where("projects", columns, condition)
-
-    def insert_into(self, project):
-        return SQLConnector().insert_into("projects", project.to_database_query())
+        SQLConnector.__init__(self)
+        self.table_name = TABLE_NAME
