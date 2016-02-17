@@ -45,5 +45,5 @@ class ProjectsHandler(webapp2.RequestHandler):
 
 
 app = webapp2.WSGIApplication([
-    ('/projects', ProjectsHandler),
+    ('/projects', ProjectsHandler)
 ])

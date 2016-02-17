@@ -14,7 +14,7 @@ handlers:
   script: projects.ProjectsHandler.app
 
 - url: /login
-  script: UserHandler.app
+  script: users.UserHandler.app
 
 libraries:
 - name: MySQLdb

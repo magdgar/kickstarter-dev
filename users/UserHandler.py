@@ -21,5 +21,5 @@ class UserHandler(webapp2.RequestHandler):
 
 
 app = webapp2.WSGIApplication([
-    ('/login', UserHandler),
+    ('/login', UserHandler)
 ])
