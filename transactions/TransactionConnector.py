@@ -1,32 +1,33 @@
+import datetime
+
 from SQLConnector import SQLConnector
 
-TABLE_NAME = "projects"
+TABLE_NAME = "transactions"
 
 
 class Transaction:
-    def __init__(self, name, description, creator):
-        self.name = name
-        self.description = description
-        self.creator = creator
-        self.money = 0
-        self.createdOn = datetime.datetime.now().strftime('%Y-%m-%d')
+    def __init__(self, project_id, user_id, money):
+        self.project_id = project_id
+        self.user_id = user_id
+        self.money = money
+        self.time = datetime.datetime.now().isoformat(' ')
 
     def to_json_obj(self):
         obj = {
             'id': self.id,
-            'name': self.name,
-            'description': self.description,
-            'creator': self.creator,
+            'project-id': self.project_id,
+            'user_id': self.user_id,
             'money': self.money,
-            'date': self.createdOn
+            'time': self.time
             }
         return obj
 
     def to_database_query(self):
-        name = "'" + self.name + "'"
-        desc = "'" + self.description + "'"
-        date = "'" + self.createdOn + "'"
-        query = {"name": name, "description": desc, "creator": self.creator, "createdOn": date, "money": self.money}
+        project_id = "'" + self.project_id + "'"
+        user_id = "'" + self.user_id + "'"
+        money = "'" + self.money + "'"
+        time = "'" + self.time + "'"
+        query = {"project_id": project_id, "user_id": user_id, "money": money, "timestamp": time}
         return query
 
 
@@ -35,5 +36,5 @@ class TransactionConnector(SQLConnector):
         SQLConnector.__init__(self)
         self.table_name = TABLE_NAME
 
-    def insert_into(self, project):
-        return SQLConnector().insert_into(project.to_database_query())
+    def insert_into(self, transaction):
+        return SQLConnector.insert_into(self, transaction.to_database_query())

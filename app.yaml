@@ -16,6 +16,9 @@ handlers:
 - url: /login
   script: users.UserHandler.app
 
+- url: /transaction
+  script: transactions.TransactionHandler.app
+
 libraries:
 - name: MySQLdb
   version: "latest"

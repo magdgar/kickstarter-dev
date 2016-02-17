@@ -37,6 +37,6 @@ class ProjectConnector(SQLConnector):
         self.table_name = TABLE_NAME
 
     def insert_into(self, project):
-        return SQLConnector().insert_into(project.to_database_query())
+        return SQLConnector.insert_into(self, project.to_database_query())
 
 

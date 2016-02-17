@@ -30,7 +30,6 @@ class UserConnector(SQLConnector):
         self.table_name = TABLE_NAME
         SQLConnector.table_name = TABLE_NAME
 
-
     def insert_into(self, user):
         return SQLConnector.insert_into(self, user.to_database_query())
 
