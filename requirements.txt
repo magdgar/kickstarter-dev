@@ -1,4 +1,6 @@
-requests[security]
+libffi
+libssl
+python
 MySQL-python==1.2.5
 WebOb
 Paste
