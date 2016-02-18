@@ -1,6 +1,6 @@
-libffi
-libssl
-python
+python-dev
+libffi-dev
+libssl-dev
 MySQL-python==1.2.5
 WebOb
 Paste
