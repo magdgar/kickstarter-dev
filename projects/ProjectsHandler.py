@@ -41,7 +41,10 @@ class ProjectsHandler(webapp2.RequestHandler):
                               str(self.request.get("desc")),
                               str(self.request.get("creatorId")))
 
-        self.project_conn.insert_into(new_project)
+        if self.project_conn.insert_into(new_project):
+            self.response.status = 201
+        else:
+            self.response.status = 400
 
 
 app = webapp2.WSGIApplication([

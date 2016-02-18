@@ -32,5 +32,3 @@ class UserConnector(SQLConnector):
 
     def insert_into(self, user):
         return SQLConnector.insert_into(self, user.to_database_query())
-
-
