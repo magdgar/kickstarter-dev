@@ -27,6 +27,7 @@ class Project:
         name = "'" + self.name + "'"
         desc = "'" + self.description + "'"
         date = "'" + self.createdOn + "'"
+        #creator = "'" + self.creator + "'" bez tego o int
         query = {"name": name, "description": desc, "creator": self.creator, "createdOn": date, "money": self.money}
         return query
 
