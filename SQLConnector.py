@@ -38,6 +38,7 @@ class SQLConnector:
             self.db.commit()
             return True
         except MySQLdb.Error, e:
+            print query
             print e
             self.db.rollback()
             return False
