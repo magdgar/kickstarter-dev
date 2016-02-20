@@ -13,13 +13,13 @@ class TestHandlers(unittest.TestCase):
         self.project_conn = ProjectConnector()
 
     def test_get_all_projects(self):
-        #self.project_conn.insert_into(self.sample_project)
-        #self.project_conn.insert_into(self.sample_project2)
+        self.project_conn.insert_into(self.sample_project)
+        self.project_conn.insert_into(self.sample_project2)
 
         request = webapp2.Request.blank('/projects')
         response = request.get_response(projects.ProjectsHandler.app)
 
         self.assertEqual(response.status_int, 200)
         print(response.body)
-        #self.assertTrue("testName")
-        #self.assertTrue("testDesc2" in response.body)
+        self.assertTrue("testDesc" in response.body)
+        self.assertTrue("testDesc2" in response.body)
