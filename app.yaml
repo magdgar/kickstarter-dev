@@ -1,0 +1,26 @@
+application: kickstarter-dev
+module: backend
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+# Handlers match in order, put above the default handler.
+handlers:
+- url: /
+  script: hello.app
+
+- url: /projects
+  script: projects.ProjectsHandler.app
+
+- url: /login
+  script: users.UserHandler.app
+
+- url: /transaction
+  script: transactions.TransactionHandler.app
+
+libraries:
+- name: MySQLdb
+  version: "latest"
+- name: webapp2
+  version: latest
