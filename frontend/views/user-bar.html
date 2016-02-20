@@ -1,0 +1,89 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../bower_components/paper-dialog-behavior/paper-dialog-behavior.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../bower_components/paper-input/paper-textarea.html">
+<link rel="import" href="../bower_components/iron-autogrow-textarea/iron-autogrow-textarea.html">
+
+
+<dom-module id="user-bar">
+    <template>
+        <style>
+            .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                background-color: limegreen;
+                padding: 0 20px;
+            }
+
+            paper-button {
+                padding: 20px 6px;
+            }
+
+            #dialog {
+                width: 70%;
+            }
+        </style>
+        <iron-ajax
+                id="ajax"
+                url="http://backend.kickstarter-dev.appspot.com/projects"
+                method="POST"
+                on-response="handleResponse"
+                handle-as="json"></iron-ajax>
+        <div class="header">
+            <div id="logo">Kickstarter</div>
+            <div id="user-info">
+                <span>{{login}}</span>
+                <span>(<span>{{ovc}}</span> OVC)</span>
+                <paper-button id="form-button">New Project</paper-button>
+                <paper-button>Logout</paper-button>
+            </div>
+        </div>
+        <paper-dialog id="dialog" modal>
+            <h2>Create new project</h2>
+            <div>
+                <paper-input label="Project name" char-counter maxlength="256" bind-value="{{name}}"></paper-input>
+                <paper-textarea label="Description" char-counter max-rows="8" bind-value="{{desc}}"></paper-textarea>
+            </div>
+            <div class="buttons">
+                <paper-button dialog-dismiss>Cancel</paper-button>
+                <paper-button dialog-confirm autofocus id="add-button">Add</paper-button>
+            </div>
+        </paper-dialog>
+    </template>
+</dom-module>
+
+<script>
+    Polymer({
+        is: 'user-bar',
+        properties: {
+            name: String,
+            desc: String,
+            login: String,
+            ovc: {
+                type: Number,
+                value: 0
+            }
+        },
+        listeners: {
+            'form-button.tap': 'showForm',
+            'add-button.tap': 'addProject',
+            'logo.tap': 'goHome'
+        },
+        showForm: function(e) {
+            this.querySelector('#dialog').toggle();
+        },
+        addProject: function(e) {
+            this.$.ajax.params = {"name":this.name, "desc":this.desc, "creatorID":"1"};
+            this.$.ajax.generateRequest();
+        },
+        goHome: function(e) {
+            page('');
+        },
+        handleResponse: function(request) {
+            document.querySelector("#list-ajax").generateRequest();
+        }
+    });
+</script>

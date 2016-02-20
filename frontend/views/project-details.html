@@ -1,0 +1,38 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+
+
+<dom-module id="project-details">
+    <template>
+        <iron-ajax
+                id="details-ajax"
+                url="http://backend.kickstarter-dev.appspot.com/projects"
+                handle-as="json"
+                on-response="handleResponse"
+                last-response="{{ajaxResponse}}"></iron-ajax>
+        <template is="dom-repeat" items="{{ajaxResponse}}">
+            <paper-card id="project-column">
+                <div class="card-content">
+                    <h2>{{item.name}}</h2>
+                    <p>{{item.description}}</p>
+                </div>
+            </paper-card>
+            <div id="about-column">
+                <h2>{{item.creatorID}}</h2>
+                <div>Money collected: <span>{{item.money}}</span> OVC</div>
+            </div>
+
+        </template>
+    </template>
+</dom-module>
+
+<script>
+    Polymer({
+        is: 'project-details',
+        handleResponse: function(request) {
+            document.querySelector("#app").route='project';
+        }
+    });
+</script>

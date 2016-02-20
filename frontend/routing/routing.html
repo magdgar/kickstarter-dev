@@ -1,0 +1,21 @@
+<script>
+    window.addEventListener('WebComponentsReady', function() {
+        var app = document.querySelector('#app');
+
+        page.base('');
+        page('/', home);
+        page('/project/:project', project);
+        page('/*', project);
+        page();
+        function home() {
+            app.route = 'home';
+            console.log("changing for home");
+        }
+        function project(ctx) {
+            app.route = 'load';
+            console.log("changing for project");
+            document.querySelector('#details-ajax').params.name = ctx.params.project;
+            document.querySelector('#details-ajax').generateRequest();
+        }
+    });
+</script>

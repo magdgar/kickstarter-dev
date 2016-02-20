@@ -1,0 +1,100 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+
+
+<dom-module id="projects-list">
+    <template>
+        <style>
+            paper-card {
+                width: 100%;
+                height: 400px;
+                margin: 10px 0;
+            }
+
+            .title-bar {
+                height: 20%;
+            }
+
+            .description {
+                height: 67%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                padding-bottom: 10px;
+                border-top: 1px #dddddd solid;
+            }
+
+            .title {
+                font-family: 'PT Serif', serif;
+                text-shadow: 1px 1px gray;
+                font-size: 25px;
+                color: limegreen;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            #more-info {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                padding-top: 3px;
+                font-family: 'Poiret One', cursive;
+                font-weight: bold;
+                color: gray;
+            }
+
+            .subtitle {
+                font-family: 'Poiret One', cursive;
+                text-align: right;
+            }
+
+            span {
+                color: black;
+            }
+
+            p {
+                white-space: pre-wrap;
+                font-family: 'Open Sans', sans-serif;
+            }
+        </style>
+        <iron-ajax
+                id="list-ajax"
+                auto
+                url="http://backend.kickstarter-dev.appspot.com/projects"
+                handle-as="json"
+                last-response="{{ajaxResponse}}"></iron-ajax>
+        <div class="container-fluid">
+            <template is="dom-repeat" items="{{ajaxResponse}}">
+                <div class="col-md-4">
+                    <paper-card>
+                        <div class="card-content title-bar">
+                            <div class="title">{{item.name}}</div>
+                            <div id="more-info">
+                                <div class="datetime">{{item.date}}</div>
+                                <div class="dotation"><span>{{item.money}}</span> OVC collected</div>
+                                <div class="subtitle">by <span>{{item.creator}}</span></div>
+                            </div>
+                        </div>
+                        <div class="card-content description">
+                            <p>{{item.description}}</p>
+                        </div>
+                        <div class="card-actions">
+                            <paper-button id="{{item.name}}" on-click="showDetails">See More</paper-button>
+                        </div>
+                    </paper-card>
+                </div>
+            </template>
+        </div>
+    </template>
+</dom-module>
+
+<script>
+    Polymer({
+        is: 'projects-list',
+        showDetails: function(e) {
+            page('/project/'+encodeURIComponent(e.target.id));
+        }
+    });
+</script>

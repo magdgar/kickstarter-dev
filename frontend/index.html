@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kickstarter</title>
+    <link href="styles/stylesheet.css" rel="stylesheet" type="text/css">
+    <link href="styles/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=PT+Serif:700&subset=latin-ext' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Poiret+One&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300italic&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+    <script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
+    <script src="bower_components/page/page.js"></script>
+    <link rel="import" href="bower_components/paper-styles/demo-pages.html">
+    <link rel="import" href="bower_components/paper-header-panel/paper-header-panel.html">
+    <link rel="import" href="bower_components/iron-pages/iron-pages.html">
+    <link rel="import" href="bower_components/paper-spinner/paper-spinner.html">
+    <link rel="import" href="views/user-bar.html">
+    <link rel="import" href="views/projects-list.html">
+    <link rel="import" href="views/project-details.html">
+    <link rel="import" href="routing/routing.html">
+</head>
+<body id="no-padding">
+    <paper-header-panel class="flex">
+        <user-bar login="Username" class="paper-header"></user-bar>
+        <div id="content">
+            <template is="dom-bind" id="app">
+                <iron-pages attr-for-selected="data-route" selected="{{route}}">
+                    <projects-list data-route="home"></projects-list>
+                    <project-details data-route="project"></project-details>
+                    <div id="loading" data-route="load"><paper-spinner alt="Loading project details" active></paper-spinner></div>
+                </iron-pages>
+            </template>
+        </div>
+    </paper-header-panel>
+</body>
+</html>

@@ -16,8 +16,23 @@ handlers:
 - url: /login
   script: users.UserHandler.app
 
+- url: /test
+  static_dir: index
+
 - url: /transaction
   script: transactions.TransactionHandler.app
+
+- url: /styles
+  static_dir: frontend/styles
+
+- url: /bower_components
+  static_dir: frontend/bower_components
+
+- url: /views
+  static_dir: frontend/views
+
+- url: /routing
+  static_dir: frontend/routing
 
 libraries:
 - name: MySQLdb
