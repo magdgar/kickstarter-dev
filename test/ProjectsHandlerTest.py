@@ -1,4 +1,3 @@
-
 import unittest
 import webapp2
 import projects.ProjectsHandler
