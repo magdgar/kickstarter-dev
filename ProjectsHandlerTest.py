@@ -22,4 +22,5 @@ class TestHandlers(unittest.TestCase):
         self.assertEqual(response.status_int, 200)
         print(response.body)
         self.assertTrue("testDesc" in response.body)
+        self.assertFalse("testDesc1" in response.body)
         self.assertTrue("testDesc2" in response.body)
