@@ -1,3 +1,4 @@
+ndg-httpsclient
 requests[security]
 MySQL-python==1.2.5
 WebOb

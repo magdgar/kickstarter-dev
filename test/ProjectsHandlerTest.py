@@ -1,11 +1,10 @@
+
 import unittest
 import webapp2
 import projects.ProjectsHandler
 import projects.ProjectConnector
 from projects.ProjectConnector import Project
 from projects.ProjectConnector import ProjectConnector
-import requests.packages.urllib3
-requests.packages.urllib3.disable_warnings()
 
 
 class TestHandlers(unittest.TestCase):
