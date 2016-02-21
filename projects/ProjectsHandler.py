@@ -3,6 +3,7 @@ import json
 import webapp2
 
 from ProjectConnector import ProjectConnector, Project
+from projects.ProjectValidator import validate
 from users.UsersConnector import UserConnector
 
 
@@ -40,11 +41,12 @@ class ProjectsHandler(webapp2.RequestHandler):
         new_project = Project(str(self.request.get("name")),
                               str(self.request.get("desc")),
                               str(self.request.get("creatorId")))
-
-        if self.project_conn.insert_into(new_project):
-            self.response.status = 201
-        else:
-            self.response.status = 400
+        if validate(self.response, new_project):
+            if self.project_conn.insert_into(new_project):
+                self.response.status = 201
+                self.response.write("nice to see your creativity, stay cool")
+            else:
+                self.response.status = 400
 
 
 app = webapp2.WSGIApplication([

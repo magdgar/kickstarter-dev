@@ -24,3 +24,4 @@ class TestHandlers(unittest.TestCase):
         self.assertTrue("testDesc" in response.body)
         self.assertFalse("testDesc1" in response.body)
         self.assertTrue("testDesc2" in response.body)
+
