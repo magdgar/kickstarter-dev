@@ -6,7 +6,7 @@ TABLE_NAME = "users"
 class User:
     def __init__(self, google_id, name):
         self.name = name
-        self.money = 0
+        self.money = 15
         self.google_id = google_id
 
     def to_json_obj(self):
