@@ -1,8 +1,9 @@
 import webapp2
-
+from users.UserService import get_user
 
 class MainPage(webapp2.RequestHandler):
     def get(self):
+        get_user()
         with open('frontend/index.html', 'r') as myfile:
             data=myfile.read()
 
