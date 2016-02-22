@@ -12,24 +12,32 @@ handlers:
 
 - url: /projects
   script: projects.ProjectsHandler.app
+  secure: always
+
 
 - url: /login
   script: users.UserHandler.app
+  secure: always
 
 - url: /transaction
   script: transactions.TransactionHandler.app
+  secure: always
 
 - url: /styles
   static_dir: frontend/styles
+  secure: always
 
 - url: /bower_components
   static_dir: frontend/bower_components
+  secure: always
 
 - url: /views
   static_dir: frontend/views
+  secure: always
 
 - url: /routing
   static_dir: frontend/routing
+  secure: always
 
 
 libraries:
