@@ -11,7 +11,7 @@ class UserHandler(webapp2.RequestHandler):
 
     def get(self):
         current_user = users.get_current_user()
-        row = self.user_conn.select_where("name = '%s'" % current_user.nickname())
+        row = self.user_conn.select_all_where("name = '%s'" % current_user.nickname())
         response = []
         obj = {
             'name': row[0],

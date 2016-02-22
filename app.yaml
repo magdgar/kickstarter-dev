@@ -24,7 +24,6 @@ handlers:
   script: users.UserHandler.app
   secure: always
 
-
 - url: /transaction
   script: transactions.TransactionHandler.app
   secure: always
