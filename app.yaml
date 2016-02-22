@@ -9,6 +9,7 @@ handlers:
 - url: /
   script: hello.app
   secure: always
+  login: required
 
 - url: /projects
   script: projects.ProjectsHandler.app
