@@ -6,24 +6,104 @@
 
 <dom-module id="project-details">
     <template>
+        <style>
+            paper-card {
+                width: 100%;
+                /*height: 400px;*/
+                margin: 10px 0;
+            }
+
+            /*.title-bar {*/
+                /*height: 20%;*/
+            /*}*/
+
+            .description {
+                height: 67%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                padding-bottom: 10px;
+                border-top: 1px #dddddd solid;
+            }
+
+            .title {
+                font-family: 'Open Sans', sans-serif;
+                font-weight: bold;
+                text-shadow: 0px 1px green;
+                font-size: 25px;
+                color: limegreen;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            #more-info {
+                /*display: flex;*/
+                /*flex-direction: row;*/
+                /*justify-content: space-between;*/
+                /*align-items: center;*/
+                padding-top: 3px;
+                font-family: 'Open Sans', cursive;
+                font-weight: bold;
+                color: gray;
+            }
+
+            /*.subtitle {*/
+                /*font-family: 'Open Sans', sans-serif;*/
+                /*font-weight: lighter;*/
+            /*}*/
+
+            #more-info span {
+                color: black;
+            }
+
+            .subtitle paper-button {
+                border: 1px solid transparent;
+                padding: 0;
+                color: black;
+                font-family: 'Open Sans', sans-serif;
+                font-weight: lighter;
+            }
+
+            .subtitle paper-button:hover {
+                border: 1px solid limegreen;
+            }
+
+            p {
+                white-space: pre-wrap;
+                font-family: 'Open Sans', sans-serif;
+            }
+        </style>
         <iron-ajax
                 id="details-ajax"
-                url="http://kickstarter-dev.appspot.com/projects"
+                url="https://kickstarter-dev.appspot.com/projects"
                 handle-as="json"
                 on-response="handleResponse"
                 last-response="{{ajaxResponse}}"></iron-ajax>
         <template is="dom-repeat" items="{{ajaxResponse}}">
-            <paper-card id="project-column">
-                <div class="card-content">
-                    <h2>{{item.name}}</h2>
+            <!--<paper-card id="project-column">-->
+                <!--<div class="card-content">-->
+                    <!--<h2>{{item.name}}</h2>-->
+                    <!--<p>{{item.description}}</p>-->
+                <!--</div>-->
+            <!--</paper-card>-->
+            <!--<div id="about-column">-->
+                <!--<h2>{{item.creatorname}}</h2>-->
+                <!--<div>Money collected: <span>{{item.money}}</span> OVC</div>-->
+                <!--<div>Created on: <span>{{item.date}}</span></div>-->
+            <!--</div>-->
+            <paper-card>
+                <div class="card-content title-bar">
+                    <div class="title"><span class="{{item.name}}" on-click="showDetails">{{item.name}}</span></div>
+                    <div id="more-info">
+                        <div class="datetime">Created on <span>{{item.date}}</span></div>
+                        <div class="dotation"><span>{{item.money}}</span> OVC collected</div>
+                        <div class="subtitle">Made by:<paper-button>{{item.creatorname}}</paper-button></div>
+                    </div>
+                </div>
+                <div class="card-content description">
                     <p>{{item.description}}</p>
                 </div>
             </paper-card>
-            <div id="about-column">
-                <h2>{{item.creatorID}}</h2>
-                <div>Money collected: <span>{{item.money}}</span> OVC</div>
-            </div>
-
         </template>
     </template>
 </dom-module>
