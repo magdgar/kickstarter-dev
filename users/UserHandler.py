@@ -5,9 +5,13 @@ from UsersConnector import UserConnector, User
 
 
 class UserHandler(webapp2.RequestHandler):
+    def __init__(self, request, response):
+        self.initialize(request, response)
+        self.user_conn = UserConnector()
+
     def get(self):
         current_user = users.get_current_user()
-        row = UserConnector().select_where("name = '%s'" % current_user.nickname())
+        row = self.user_conn.select_where("name = '%s'" % current_user.nickname())
         response = []
         obj = {
             'name': row[0],
