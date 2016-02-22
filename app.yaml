@@ -8,6 +8,7 @@ threadsafe: true
 handlers:
 - url: /
   script: hello.app
+  secure: always
 
 - url: /projects
   script: projects.ProjectsHandler.app
