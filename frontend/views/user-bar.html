@@ -38,7 +38,7 @@
                 <span>{{login}}</span>
                 <span>(<span>{{ovc}}</span> OVC)</span>
                 <paper-button id="form-button">New Project</paper-button>
-                <paper-button>Logout</paper-button>
+                <paper-button id="logout">Logout</paper-button>
             </div>
         </div>
         <paper-dialog id="dialog" modal>
@@ -70,7 +70,8 @@
         listeners: {
             'form-button.tap': 'showForm',
             'add-button.tap': 'addProject',
-            'logo.tap': 'goHome'
+            'logo.tap': 'goHome',
+            'logout.tap': 'logout'
         },
         showForm: function(e) {
             this.querySelector('#dialog').toggle();
@@ -81,6 +82,9 @@
         },
         goHome: function(e) {
             page('');
+        },
+        logout: function(e) {
+            page('/logout');
         },
         handleResponse: function(request) {
             document.querySelector("#list-ajax").generateRequest();
