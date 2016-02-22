@@ -17,7 +17,7 @@ handlers:
 
 
 - url: /logout
-  script: users.UserHandler.app
+  script: users.LogoutHandler.app
   secure: always
 
 - url: /transaction
