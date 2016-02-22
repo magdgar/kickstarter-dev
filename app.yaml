@@ -16,7 +16,7 @@ handlers:
   secure: always
 
 
-- url: /login
+- url: /logout
   script: users.UserHandler.app
   secure: always
 
