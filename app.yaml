@@ -20,6 +20,11 @@ handlers:
   script: users.LogoutHandler.app
   secure: always
 
+- url: /user
+  script: users.UserHandler.app
+  secure: always
+
+
 - url: /transaction
   script: transactions.TransactionHandler.app
   secure: always
