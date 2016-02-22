@@ -84,7 +84,7 @@
             page('');
         },
         logout: function(e) {
-            page('/logout');
+            window.location.replace("/logout");
         },
         handleResponse: function(request) {
             document.querySelector("#list-ajax").generateRequest();
