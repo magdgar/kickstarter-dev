@@ -11,15 +11,19 @@ handlers:
 
 - url: /projects
   script: projects.ProjectsHandler.app
+  secure: always
 
 - url: /login
   script: users.UserHandler.app
+  secure: always
 
 - url: /test
   static_dir: index
+  secure: always
 
 - url: /transaction
   script: transactions.TransactionHandler.app
+  secure: always
 
 - url: /styles
   static_dir: frontend/styles
@@ -29,9 +33,11 @@ handlers:
 
 - url: /views
   static_dir: frontend/views
+  secure: always
 
 - url: /routing
   static_dir: frontend/routing
+  
 
 libraries:
 - name: MySQLdb
