@@ -1,6 +1,7 @@
 import webapp2
 from users.UserService import get_user
 
+
 class MainPage(webapp2.RequestHandler):
     def get(self):
         get_user()

@@ -10,7 +10,7 @@ class Project:
         self.description = description
         self.creator = creator
         self.money = 0
-        self.createdOn = datetime.datetime.now().strftime('%Y-%m-%d')
+        self.createdOn = datetime.datetime.now().isoformat(' ')
 
     def to_json_obj(self):
         obj = {
