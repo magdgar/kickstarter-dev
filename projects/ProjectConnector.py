@@ -24,12 +24,13 @@ class Project:
         return obj
 
     def to_database_query(self):
-        name = "'" + self.name + "'"
-        desc = "'" + self.description + "'"
-        date = "'" + self.createdOn + "'"
-        #creator = "'" + self.creator + "'" bez tego o int
-        query = {"name": name, "description": desc, "creator": self.creator, "createdOn": date, "money": self.money}
-        return query
+        data = [self.name, self.description, self.createdOn]
+        data = [str(x) for x in data]
+        data.append(self.creator)
+        data.append(self.money)
+        labels = ["name", "description", "date", "creator", "money"]
+        return dict(zip(labels, data))
+
 
 
 class ProjectConnector(SQLConnector):

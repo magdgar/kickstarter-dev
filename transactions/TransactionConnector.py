@@ -23,12 +23,10 @@ class Transaction:
         return obj
 
     def to_database_query(self):
-        project_id = "'" + self.project_id + "'"
-        user_id = "'" + self.user_id + "'"
-        money = "'" + self.money + "'"
-        time = "'" + self.time + "'"
-        query = {"project_id": project_id, "user_id": user_id, "money": money, "timestamp": time}
-        return query
+        data = [self.project_id, self.user_id, self.money, self.time]
+        data = [str(x) for x in data]
+        labels = ["project_id", "user_id", "money", "timestamp"]
+        return dict(zip(labels, data))
 
 
 class TransactionConnector(SQLConnector):
