@@ -17,21 +17,29 @@
                 background-color: limegreen;
                 padding: 0 20px;
             }
-
-            paper-button {
+            .paper-button {
                 padding: 20px 6px;
             }
 
             #dialog {
                 width: 70%;
             }
+            #logo {
+                font-family: 'Open Sans', sans-serif;
+                font-weight: bold;
+                text-shadow: 0px 1px darkgray;
+                font-size: 36px;
+                color: #CCFFCC;
+            }
         </style>
         <iron-ajax
                 id="ajax"
-                url="http://kickstarter-dev.appspot.com/projects"
+                url="https://kickstarter-dev.appspot.com/projects"
                 method="POST"
                 on-response="handleResponse"
-                handle-as="json"></iron-ajax>
+                handle-as="json">
+
+        </iron-ajax>
         <div class="header">
             <div id="logo">Kickstarter</div>
             <div id="user-info">
