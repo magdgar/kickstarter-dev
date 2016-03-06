@@ -17,7 +17,7 @@ class TransactionHandler(webapp2.RequestHandler):
                               str(self.request.get("userId")),
                               str(self.request.get("money")))
         if validate(self.response, new_transaction):
-            if self.transaction_conn.insert_into(new_transaction):
+            if self.transaction_conn.support_project(new_transaction.user_id, new_transaction.project_id, new_transaction.money):
                 self.response.status = 201
             else:
                 self.response.status = 400

@@ -32,7 +32,6 @@ class Project:
         return dict(zip(labels, data))
 
 
-
 class ProjectConnector(SQLConnector):
     def __init__(self):
         SQLConnector.__init__(self)

@@ -1,5 +1,7 @@
 import datetime
 
+import MySQLdb
+
 from SQLConnector import SQLConnector
 
 TABLE_NAME = "transactions"
@@ -36,3 +38,33 @@ class TransactionConnector(SQLConnector):
 
     def insert_into(self, transaction):
         return SQLConnector.insert_into(self, transaction.to_database_query())
+
+    def support_project(self, user_id, project_id, money):
+        try:
+            if self.can_user_pass_that_amount_of_money(user_id, money) \
+                    and self.check_if_this_project_is_in_database(project_id):
+                self.save_accepted_transaction(user_id, project_id, money)
+                return True
+            else:
+                self.save_failure_transaction(user_id, project_id, money)
+        except MySQLdb.Error:
+            self.db.rollback()
+        return False
+
+    def save_accepted_transaction(self, user_id, project_id, money):
+        self.cursor.execute("update users set money = money - %s where id = %s"%(money, user_id))
+        self.cursor.execute("update projects set money = money + %s where id = %s" % (money, project_id))
+        self.cursor.execute("insert into transactions (project_id, user_id, money, timestamp, state) values (%s, %s, %s, now(), 'accepted' )" % (project_id, user_id, money))
+        self.db.commit()
+
+    def save_failure_transaction(self, user_id, project_id, money):
+        self.cursor.execute("insert into transactions (project_id,user_id, money, timestamp, state) values (%s, %s, %s, now(), 'failed' )" % (project_id, user_id, money))
+        self.db.commit()
+
+    def check_if_this_project_is_in_database(self, project_id):
+        self.cursor.execute("select check_if_project_in_database(%s)" % project_id)
+        return self.cursor.fetchall()[0][0]
+
+    def can_user_pass_that_amount_of_money(self, user_id, money):
+        self.cursor.execute("select check_if_user_can_pass_this_amount(%s, %s)" % (user_id, money))
+        return self.cursor.fetchall()[0][0]
