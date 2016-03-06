@@ -39,7 +39,6 @@ class ProjectsHandler(webapp2.RequestHandler):
 
     def post(self):
         self.response.status = 400
-
         if ';' not in (self.request.get("name") and self.request.get("desc") and self.request.get("creatorId")):
             new_project = Project(str(self.request.get("name")),
                                   str(self.request.get("desc")),

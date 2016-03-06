@@ -1,7 +1,7 @@
 import MySQLdb
 import os
 
-from Locals import DB, PROPERTIES
+from locals import DB, PROPERTIES, escape
 
 
 class SQLConnector:
