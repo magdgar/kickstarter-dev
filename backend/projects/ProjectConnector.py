@@ -26,10 +26,9 @@ class Project:
 
     def to_database_query(self):
         data = [self.name, self.description, self.createdOn]
-        data = [str(x) for x in data]
+        data = [repr(x) for x in data]
         data.append(self.creator)
-        data.append(self.money)
-        labels = ["name", "description", "date", "creator", "money"]
+        labels = ["name", "description", "createdOn", "creator"]
         return dict(zip(labels, data))
 
 

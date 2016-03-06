@@ -19,8 +19,8 @@ class User:
 
     def to_database_query(self):
         data = [self.name, self.google_id]
-        data = [str(x) for x in data]
-        data.append(self.money)
+        data = [repr(x) for x in data]
+        data.append( self.money)
         labels = ["name", "google_id", "money"]
         return dict(zip(labels, data))
 

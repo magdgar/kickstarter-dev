@@ -38,15 +38,17 @@ class ProjectsHandler(webapp2.RequestHandler):
         self.response.out.write(json.dumps(response))
 
     def post(self):
-        self.response.status = 400
-        if ';' not in (self.request.get("name") and self.request.get("desc") and self.request.get("creatorId")):
-            new_project = Project(str(self.request.get("name")),
-                                  str(self.request.get("desc")),
-                                  str(self.request.get("creatorId")))
-            if validate(self.response, new_project):
-                if self.project_conn.insert_into(new_project):
-                    self.response.status = 201
-                    self.response.write("nice to see your creativity, stay cool")
+        #self.response.status = 400
+        #if ';' not in (self.request.get("name") and self.request.get("desc") and self.request.get("creatorId")):
+        new_project = Project(str(self.request.get("name")),
+                              str(self.request.get("desc")),
+                              str(self.request.get("creatorId")))
+        if validate(self.response, new_project):
+            if self.project_conn.insert_into(new_project):
+                self.response.status = 201
+                self.response.write("nice to see your creativity, stay cool")
+            else:
+                self.response.write("no nie")
 
 app = webapp2.WSGIApplication([
     ('/projects', ProjectsHandler)
