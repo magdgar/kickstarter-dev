@@ -3,8 +3,8 @@ import json
 import webapp2
 
 from ProjectConnector import ProjectConnector, Project
-from projects.ProjectValidator import validate
-from users.UsersConnector import UserConnector
+from backend.projects.ProjectValidator import validate
+from backend.users.UsersConnector import UserConnector
 
 
 class ProjectsHandler(webapp2.RequestHandler):

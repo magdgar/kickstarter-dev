@@ -1,9 +1,10 @@
 import unittest
+
 import webapp2
-import projects.ProjectsHandler
-import projects.ProjectConnector
 from projects.ProjectConnector import Project
 from projects.ProjectConnector import ProjectConnector
+
+import backend.projects.ProjectsHandler
 
 
 class TestHandlers(unittest.TestCase):
@@ -17,7 +18,7 @@ class TestHandlers(unittest.TestCase):
         self.project_conn.insert_into(self.sample_project2)
 
         request = webapp2.Request.blank('/projects')
-        response = request.get_response(projects.ProjectsHandler.app)
+        response = request.get_response(backend.projects.ProjectsHandler.app)
 
         self.assertEqual(response.status_int, 200)
         print(response.body)

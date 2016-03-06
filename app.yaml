@@ -7,25 +7,24 @@ threadsafe: true
 # Handlers match in order, put above the default handler.
 handlers:
 - url: /
-  script: hello.app
+  script: backend.hello.app
   secure: always
   login: required
 
 - url: /projects
-  script: projects.ProjectsHandler.app
+  script: backend.projects.ProjectsHandler.app
   secure: always
 
-
 - url: /logout
-  script: users.LogoutHandler.app
+  script: backend.users.LogoutHandler.app
   secure: always
 
 - url: /user
-  script: users.UserHandler.app
+  script: backend.users.UserHandler.app
   secure: always
 
 - url: /transaction
-  script: transactions.TransactionHandler.app
+  script: backend.transactions.TransactionHandler.app
   secure: always
 
 - url: /styles

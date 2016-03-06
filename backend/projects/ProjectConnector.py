@@ -1,5 +1,6 @@
 import datetime
-from SQLConnector import SQLConnector
+
+from backend.SQLConnector import SQLConnector
 
 TABLE_NAME = "projects"
 

@@ -1,8 +1,7 @@
-from google.appengine.api import users
 import webapp2
 
-from transactions.TransactionConnector import Transaction, TransactionConnector
-from transactions.TransactionValidator import validate
+from backend.transactions import Transaction, TransactionConnector
+from backend.transactions import validate
 
 
 class TransactionHandler(webapp2.RequestHandler):

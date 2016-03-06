@@ -2,7 +2,7 @@ import datetime
 
 import MySQLdb
 
-from SQLConnector import SQLConnector
+from backend.SQLConnector import SQLConnector
 
 TABLE_NAME = "transactions"
 

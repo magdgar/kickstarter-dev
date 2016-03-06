@@ -1,7 +1,8 @@
-import MySQLdb
 import os
 
-from locals import DB, PROPERTIES, escape
+import MySQLdb
+
+from backend.locals import DB, PROPERTIES
 
 
 class SQLConnector:
