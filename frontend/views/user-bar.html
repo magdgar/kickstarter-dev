@@ -5,6 +5,7 @@
 <link rel="import" href="../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../bower_components/paper-input/paper-textarea.html">
 <link rel="import" href="../bower_components/iron-autogrow-textarea/iron-autogrow-textarea.html">
+<link rel="import" href="../bower_components/iron-page-url/iron-page-url.html">
 
 
 <dom-module id="user-bar">
@@ -30,6 +31,13 @@
                 text-shadow: 0px 1px darkgray;
                 font-size: 36px;
                 color: #CCFFCC;
+                display: inline;
+            }
+            #bread {
+                font-family: 'Open Sans', sans-serif;
+                font-weight: lighter;
+                font-size: 18px;
+                color: white;
             }
         </style>
         <iron-ajax
@@ -38,10 +46,10 @@
                 method="POST"
                 on-response="handleResponse"
                 handle-as="json">
-
         </iron-ajax>
+        <iron-page-url path="{{path}}"></iron-page-url>
         <div class="header">
-            <div id="logo">Kickstarter</div>
+            <div><div id="logo">Kickstarter</div><span id="bread">{{path}}</span></div>
             <div id="user-info">
                 <span>{{login}}</span>
                 <span>(<span>{{ovc}}</span> OVC)</span>
@@ -70,6 +78,7 @@
             name: String,
             desc: String,
             login: String,
+            path: String,
             ovc: {
                 type: Number,
                 value: 0
@@ -89,7 +98,7 @@
             this.$.ajax.generateRequest();
         },
         goHome: function(e) {
-            page('');
+            page('/');
         },
         logout: function(e) {
             window.location.replace("/logout");
