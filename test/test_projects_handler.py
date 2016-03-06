@@ -1,8 +1,8 @@
 import unittest
 
 import webapp2
-from projects.ProjectConnector import Project
-from projects.ProjectConnector import ProjectConnector
+from backend.projects.ProjectConnector import Project
+from backend.projects.ProjectConnector import ProjectConnector
 
 import backend.projects.ProjectsHandler
 
