@@ -20,8 +20,18 @@
     <link rel="import" href="routing/routing.html">
 </head>
 <body id="no-padding">
+    <iron-ajax
+            id="user"
+            auto
+            url="https://kickstarter-dev.appspot.com/user"
+            method="GET"
+            handle-as="json"
+            last-response="user">
+    </iron-ajax>
     <paper-header-panel class="flex">
-        <user-bar login="Username" class="paper-header"></user-bar>
+        <template is="dom-bind">
+            <user-bar login="{{user}}" class="paper-header"></user-bar>
+        </template>
         <div id="content">
             <template is="dom-bind" id="app">
                 <iron-pages attr-for-selected="data-route" selected="{{route}}">
