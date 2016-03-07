@@ -30,8 +30,8 @@
                     handle-as="json"
                     last-response="{{userResponse}}">
             </iron-ajax>
-            <template is="dom-repeat" items="{{userResponse}}">
-                <user-bar login="{{item.name}}" ovc="{{item.money}}" class="paper-header"></user-bar>
+            <template is="dom-repeat" items="{{userResponse}}" as="user">
+                <user-bar login="{{user.name}}" ovc="{{user.money}}" id="{{user.id}}" class="paper-header"></user-bar>
             </template>
         </template>
         <div id="content">

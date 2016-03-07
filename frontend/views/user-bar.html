@@ -78,6 +78,10 @@
             name: String,
             desc: String,
             login: String,
+            id: {
+                type: Number,
+                value: 0
+            },
             path: String,
             ovc: {
                 type: Number,
@@ -94,7 +98,11 @@
             this.querySelector('#dialog').toggle();
         },
         addProject: function(e) {
-            this.$.ajax.params = {"name":this.name, "desc":this.desc, "creatorId":"1"};
+            this.$.ajax.params = {
+                "name": this.name,
+                "desc": this.desc,
+                "creatorId": this.id
+            };
             this.$.ajax.generateRequest();
         },
         goHome: function(e) {
