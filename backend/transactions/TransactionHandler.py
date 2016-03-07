@@ -1,7 +1,6 @@
 import webapp2
 
-from backend.transactions import TransactionConnector
-from backend.transactions.TransactionConnector import Transaction
+from backend.transactions.TransactionConnector import Transaction, TransactionConnector
 from backend.transactions.TransactionValidator import validate
 
 
@@ -9,7 +8,6 @@ class TransactionHandler(webapp2.RequestHandler):
 
     def __init__(self, request, response):
         self.initialize(request, response)
-        self.user_conn = TransactionConnector()
         self.transaction_conn = TransactionConnector()
 
     def post(self):
