@@ -15,6 +15,7 @@ class UserHandler(webapp2.RequestHandler):
         print row
         response = []
         obj = {
+            'id': row[0][0],
             'name': row[0][1],
             'money': row[0][2]
             }
