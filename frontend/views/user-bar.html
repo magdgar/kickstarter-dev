@@ -21,7 +21,6 @@
             .paper-button {
                 padding: 20px 6px;
             }
-
             #dialog {
                 width: 70%;
             }
@@ -39,10 +38,13 @@
                 font-size: 18px;
                 color: white;
             }
+            #logo:hover{
+                color: #CCFF99;
+            }
         </style>
         <iron-ajax
                 id="ajax"
-                url="https://kickstarter-dev.appspot.com/projects"
+                url="http://127.0.0.1:8080/projects"
                 method="POST"
                 on-response="handleResponse"
                 handle-as="json">
