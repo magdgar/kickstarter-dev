@@ -28,7 +28,8 @@
     "paper-spinner": "PolymerElements/paper-spinner#~1.0.4",
     "google-signin": "GoogleWebComponents/google-signin#~1.2.0",
     "iron-meta": "PolymerElements/iron-meta#~1.1.1",
-    "iron-page-url": "PolymerElements/iron-page-url#^0.7.3"
+    "iron-page-url": "PolymerElements/iron-page-url#^0.7.3",
+    "paper-slider": "PolymerElements/paper-slider#^1.0.9"
   },
   "authors": [
     "Liseck <timages94@gmail.com>"
