@@ -35,8 +35,10 @@ class ProjectsHandler(webapp2.RequestHandler):
                 'time': str(row[5]).split(' ')[1]
             }
             response.append(obj)
-
-        self.response.out.write(json.dumps(response))
+        if len(response) == 1:
+            self.response.out.write(json.dumps(response[0]))
+        else:
+            self.response.out.write(json.dumps(response))
 
     def post(self):
         self.response.status = 400
