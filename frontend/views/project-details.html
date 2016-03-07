@@ -79,9 +79,9 @@
 
             <paper-card>
                 <div class="card-content title-bar">
-                    <div class="title"><span class="{{item.name}}" on-click="showDetails">{{item.name}}</span></div>
+                    <div class="title"><span class="{{item.name}}">{{item.name}}</span></div>
                     <div id="more-info">
-                        <div class="datetime">{{item.date}}</div>
+                        <div class="datetime"><span>{{item.date}}</span> <span>{{item.time}}</span></div>
                         <div class="dotation"><span>{{item.money}}</span> OVC collected</div>
                         <div class="subtitle">by<paper-button>{{item.creatorname}}</paper-button></div>
                         <div class="support-button" on-click="onSupportClick"><paper-button>Support</paper-button></div>
