@@ -29,7 +29,7 @@ class ProjectsHandler(webapp2.RequestHandler):
                 'name': row[1],
                 'description': row[2],
                 'creatorid': row[3],
-                'creatorname': self.user_conn.select_where(["name"], "id = %s", (row[3]))[0][0],
+                'creatorname': self.user_conn.select_where(["name"], "id = %s" % (row[3]))[0][0],
                 'money': row[4],
                 'date': str(row[5]).split(' ')[0],
                 'time': str(row[5]).split(' ')[1]
