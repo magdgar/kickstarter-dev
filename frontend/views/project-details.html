@@ -92,6 +92,13 @@
                 <paper-button dialog-confirm autofocus id="add-button">Donate</paper-button>
             </div>
         </paper-dialog>
+        <iron-ajax
+                id="transactionAjax"
+                url="https://kickstarter-dev.appspot.com/transaction"
+                method="POST"
+                on-response="handleResponse"
+                handle-as="json">
+        </iron-ajax>
         <template is="dom-repeat" items="{{ajaxResponse}}">
 
             <paper-card>
@@ -115,12 +122,21 @@
 <script>
     Polymer({
         is: 'project-details',
+        properties: {
+            userId: Number,
+            projectId: Number
+        },
         listeners: {
             'add-button.tap': 'donate'
         },
         donate: function(e) {
             var donation = document.querySelector('paper-slider').value;
-            // here add sending money $$$
+            this.$.transactionAjax.params = {
+                "projectId": this.projectId,
+                "userId": this.userId,
+                "money": donation
+            };
+            this.$.transactionAjax.generateRequest();
         },
         onSupportClick: function(e) {
             this.querySelector('#dialog').toggle();
