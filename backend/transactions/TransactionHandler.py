@@ -1,7 +1,8 @@
 import webapp2
 
-from backend.transactions import Transaction, TransactionConnector
-from backend.transactions import validate
+from backend.transactions import TransactionConnector
+from backend.transactions.TransactionConnector import Transaction
+from backend.transactions.TransactionValidator import validate
 
 
 class TransactionHandler(webapp2.RequestHandler):

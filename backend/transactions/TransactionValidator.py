@@ -11,5 +11,6 @@ def validate(response, new_transaction):
     elif new_transaction.money == "":
         response.status = 400
         response.write("money can not be empty")
+        # zwyczajnie try catch
         return False
     return True
