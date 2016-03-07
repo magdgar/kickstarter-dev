@@ -75,7 +75,7 @@
                 url="https://kickstarter-dev.appspot.com/projects"
                 handle-as="json"
                 on-response="handleResponse"
-                last-response="{{ajaxResponse}}"></iron-ajax>
+                last-response="{{project}}"></iron-ajax>
         <paper-dialog id="dialog" modal>
             <h2>Support project</h2>
             <div>
@@ -99,23 +99,37 @@
                 on-response="handleResponse"
                 handle-as="json">
         </iron-ajax>
-        <template is="dom-repeat" items="{{ajaxResponse}}">
+        <!--<template is="dom-repeat" items="{{ajaxResponse}}">-->
 
-            <paper-card>
-                <div class="card-content title-bar">
-                    <div class="title"><span class="{{item.name}}">{{item.name}}</span></div>
-                    <div id="more-info">
-                        <div class="datetime"><span>{{item.date}}</span> <span>{{item.time}}</span></div>
-                        <div class="dotation"><span>{{item.money}}</span> OVC collected</div>
-                        <div class="subtitle">by<paper-button>{{item.creatorname}}</paper-button></div>
-                        <div class="support-button" on-click="onSupportClick"><paper-button>Support</paper-button></div>
-                    </div>
+            <!--<paper-card>-->
+                <!--<div class="card-content title-bar">-->
+                    <!--<div class="title"><span class="{{item.name}}">{{item.name}}</span></div>-->
+                    <!--<div id="more-info">-->
+                        <!--<div class="datetime"><span>{{item.date}}</span> <span>{{item.time}}</span></div>-->
+                        <!--<div class="dotation"><span>{{item.money}}</span> OVC collected</div>-->
+                        <!--<div class="subtitle">by<paper-button>{{item.creatorname}}</paper-button></div>-->
+                        <!--<div class="support-button" on-click="onSupportClick"><paper-button>Support</paper-button></div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="card-content description">-->
+                    <!--<p>{{item.description}}</p>-->
+                <!--</div>-->
+            <!--</paper-card>-->
+        <!--</template>-->
+        <paper-card>
+            <div class="card-content title-bar">
+                <div class="title"><span class="{{project.name}}">{{project.name}}</span></div>
+                <div id="more-info">
+                    <div class="datetime"><span>{{project.date}}</span> <span>{{project.time}}</span></div>
+                    <div class="dotation"><span>{{project.money}}</span> OVC collected</div>
+                    <div class="subtitle">by<paper-button>{{project.creatorname}}</paper-button></div>
+                    <div class="support-button" on-click="onSupportClick"><paper-button>Support</paper-button></div>
                 </div>
-                <div class="card-content description">
-                    <p>{{item.description}}</p>
-                </div>
-            </paper-card>
-        </template>
+            </div>
+            <div class="card-content description">
+                <p>{{project.description}}</p>
+            </div>
+        </paper-card>
     </template>
 </dom-module>
 
@@ -123,8 +137,7 @@
     Polymer({
         is: 'project-details',
         properties: {
-            userId: Number,
-            projectId: Number
+            userId: Number
         },
         listeners: {
             'add-button.tap': 'donate'
@@ -132,7 +145,7 @@
         donate: function(e) {
             var donation = document.querySelector('paper-slider').value;
             this.$.transactionAjax.params = {
-                "projectId": this.projectId,
+                "projectId": this.project.id,
                 "userId": this.userId,
                 "money": donation
             };
