@@ -2,7 +2,7 @@ import datetime
 
 from backend.SQLConnector import SQLConnector
 
-TABLE_NAME = "projects"
+TABLE_NAME = 'projects'
 
 
 class Project:
